@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:keycloack_proj/flavor_config.dart';
 import 'package:keycloack_proj/models/UserInfo.dart';
 import 'package:keycloack_proj/services/secureStorage.dart';
 import 'dart:developer' as dev;
@@ -112,10 +113,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    FlavorConfig flavorConfig =FlavorConfig.getInstance();
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: const Text("Profil"),
+        title:  Text("Profil ${flavorConfig.variable}"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

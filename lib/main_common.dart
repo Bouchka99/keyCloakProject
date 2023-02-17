@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:keycloack_proj/flavor_config.dart';
 import 'package:keycloack_proj/pages/loginPage.dart';
 import 'package:keycloack_proj/pages/splashPage.dart';
-import 'package:riverpod/riverpod.dart';
 
 
 
-void main() {
+void mainCommon() {
   runApp(const MyApp());
 }
 

@@ -10,8 +10,9 @@ import 'package:keycloack_proj/pages/profilePage.dart';
 import 'package:keycloack_proj/services/secureStorage.dart';
 import 'package:keycloack_proj/views/snackBarView.dart';
 import 'dart:developer' as dev;
-import 'package:flutter_flavor/flutter_flavor.dart';
-//import 'package:keycloack_proj/BuildConfig.dart';
+//import 'package:flutter_flavor/flutter_flavor.dart';
+import 'package:keycloack_proj/flavor_config.dart';
+
 
 
 import '../models/User.dart';
@@ -167,6 +168,8 @@ class _LoginPageState extends State<LoginPage> {
     // );
 
     //final myVariable = BuildConfig.FLAVOR == "deve" ? BuildConfig.var1 : (BuildConfig.FLAVOR == "qa" ? BuildConfig.var2 : null);
+    FlavorConfig flavorConfig = FlavorConfig.getInstance();
+
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
@@ -174,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            title: const Text("Connexion"),
+            title:  Text("Connexion ${flavorConfig.variable}"),
             centerTitle: true,
           ),
           body: SingleChildScrollView(

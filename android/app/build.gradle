@@ -65,25 +65,24 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+
+
     flavorDimensions "environement"
     productFlavors {
         deve {
             dimension "environement"
             applicationId "com.example.keycloack_proj.deve"
-            resValue "string", "app_name", "deve flavor example"
-            applicationIdSuffix ".deve"
-            versionNameSuffix "-deve"
-            buildConfigField "String", "var1", "developpement"
+            versionCode 1
+            versionName "1.0"
         }
         qa {
             dimension "environement"
             applicationId "com.example.keycloack_proj.qa"
-            buildConfigField "String", "var2", "test"
+            versionCode 1
+            versionName "1.0"
         }
     }
-
-
-
     flutter {
         source '../..'
     }
