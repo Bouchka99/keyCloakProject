@@ -44,6 +44,7 @@ dependencies:
   form_field_validator: ^1.1.0
   flutter_flavor: ^3.1.1
   flutter_riverpod: ^2.2.0
+  percent_indicator: ^4.2.2
 
 
 dev_dependencies:
@@ -88,6 +89,12 @@ flutter:
     - family: IndieFlower
       fonts:
         - asset: fonts/IndieFlower-Regular.ttf
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-ExtraLight.ttf
+    - family: Zeyada
+      fonts:
+        - asset: fonts/Zeyada-Regular.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

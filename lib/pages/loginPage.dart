@@ -6,6 +6,8 @@ import 'package:get/get.dart' hide Response;
 import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
 import 'package:keycloack_proj/pages/SignUpPage.dart';
+import 'package:keycloack_proj/pages/homePage.dart';
+
 import 'package:keycloack_proj/pages/profilePage.dart';
 import 'package:keycloack_proj/services/secureStorage.dart';
 import 'package:keycloack_proj/views/snackBarView.dart';
@@ -121,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
           /// init the form
           // _email ="";
           // _password ="";
-          Get.off(() => ProfilePage());
+          Get.off(() => HomePage());
           //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
         }
       } on DioError catch (e) {
@@ -177,6 +179,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
+            backgroundColor: Colors.greenAccent,
             title:  Text("Connexion ${flavorConfig.variable}"),
             centerTitle: true,
           ),

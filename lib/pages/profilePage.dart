@@ -20,6 +20,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   String userToken = "";
   UserInfo? userInfo;
+  bool isLoading =true;
 
   Future<void> GettingUserInfoUsingDio() async {
     Dio dio = Dio();
@@ -29,6 +30,9 @@ class _ProfilePageState extends State<ProfilePage> {
         "http://10.0.2.2:8080/realms/demo/protocol/openid-connect/userinfo",
       );
       if (response.statusCode == 200) {
+        setState(() {
+          isLoading = false;
+        });
         print("Getting user info successfully");
         print("response.data : ${response.data}");
         print("type de response.data : ${response.data.runtimeType}");
@@ -102,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
       return;
     }
     await GettingUserInfoUsingDio();
-    setState(() {});
+
   }
 
   @override
@@ -116,11 +120,11 @@ class _ProfilePageState extends State<ProfilePage> {
     FlavorConfig flavorConfig =FlavorConfig.getInstance();
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title:  Text("Profil ${flavorConfig.variable}"),
         centerTitle: true,
-      ),
-      body: SingleChildScrollView(
+      ),*/
+      body: isLoading ? Center(child: CircularProgressIndicator()):SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,

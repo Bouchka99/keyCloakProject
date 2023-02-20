@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      backgroundColor: Colors.grey.shade400,
+      backgroundColor: Colors.greenAccent,
       showLoader: true,
       loadingText: Text("Merci de patienter un peu"),
       navigator: MyHomePage(title: "KeyCloackProject",),
