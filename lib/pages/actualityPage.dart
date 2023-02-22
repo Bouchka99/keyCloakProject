@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keycloack_proj/models/Story.dart';
+// import 'package:pausable_timer/pausable_timer.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ActualityPage extends StatefulWidget {
@@ -31,9 +32,14 @@ class _ActualityPageState extends State<ActualityPage> {
   // liste contenant les pourcentages vus de chaque story
   List<double> percentWatchedList =[];
 
+  bool isPaused = false;
   startWatching(){
+    //final timer = PausableTimer(Duration(seconds: 1), () => print('Fired!'));
     Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
+        if(isPaused){
+          timer.cancel();
+        }
         // le percent doit etre entre 0 et 1 s'il est compris alors le time s'écoule et s'ajoute 0.05 au percent jusqu'à atteindre 1
         if(percentWatchedList[currentStoryIndex]+ 0.05 <=1){
           percentWatchedList[currentStoryIndex] +=0.05;
@@ -73,8 +79,8 @@ class _ActualityPageState extends State<ActualityPage> {
   tapOnStory(TapDownDetails details){
     double toutchTap = details.globalPosition.dx; //position de tap par rapport la gauche sur la story
 
-    //user tap on left sauf la première
-    if(toutchTap < Get.width/2 ){
+    //user tap on left (1/4) of the screen sauf la première
+    if(toutchTap < Get.width/4 ){
       if(currentStoryIndex != 0){
         setState(() {
           //set percent watched de la story actuel et la story d'avant ou je veux se déplacer à 0
@@ -86,17 +92,38 @@ class _ActualityPageState extends State<ActualityPage> {
       }
 
     }
-    //user taped on right sauf la dernière
-    else{
+    //user taped on right (3/4 of screen) sauf la dernière
+    else if(toutchTap > 3/4 * Get.width){
       if(currentStoryIndex != stories.length -1){
         percentWatchedList[currentStoryIndex] = 1;
         percentWatchedList[currentStoryIndex + 1 ] = 0;
       }
     }
   }
+
+  _pauseTimer(){
+    setState(() {
+      isPaused =true;
+    });
+
+  }
+  _resumeTimer(){
+    setState(() {
+      isPaused =false;
+      startWatching();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () {
+        print("on long press");
+        _pauseTimer();
+      },
+      onLongPressEnd: (_) {
+        print("resume");
+        _resumeTimer();
+      },
       onTapDown:(details)=> tapOnStory(details),
       child: Stack(
         children: [
