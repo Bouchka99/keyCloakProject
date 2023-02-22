@@ -14,32 +14,32 @@ String UserInfoToJson(UserInfo userInfo){
 
 
 class UserInfo {
-  String? sub; //id
-  bool? email_verified;
-  String? name; //nom prenom
-  String? preferred_username; //pseudo
-  String? given_name; //prenom
-  String? family_name; //nom
-  String? email; // email
+  String sub; //id
+  bool email_verified;
+  String name; //nom prenom
+  String preferred_username; //pseudo
+  String given_name; //prenom
+  String family_name; //nom
+  String email; // email
 
   UserInfo(
-      {this.sub,
-      this.email,
-      this.name,
-      this.email_verified,
-      this.family_name,
-      this.given_name,
-      this.preferred_username});
+      {required this.sub,
+      required this.email,
+      required this.name,
+      required this.email_verified,
+      required this.family_name,
+      required this.given_name,
+      required this.preferred_username});
 
   factory UserInfo.fromJson(Map<String, dynamic> json) =>
      UserInfo(
-        email: json["email"],
-        email_verified: json["email_verified"],
-        family_name: json["family_name"],
-        given_name: json["given_name"],
-        name: json["name"],
-        preferred_username: json["preferred_username"],
-        sub: json["sub"]);
+        email: json["email"]??"",
+        email_verified: json["email_verified"]??"",
+        family_name: json["family_name"]??"",
+        given_name: json["given_name"]??"",
+        name: json["name"]??"",
+        preferred_username: json["preferred_username"]??"",
+        sub: json["sub"]??"");
 
 
   Map<String, dynamic> toJson() {

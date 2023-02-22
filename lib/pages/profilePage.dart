@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:keycloack_proj/flavor_config.dart';
 import 'package:keycloack_proj/models/UserInfo.dart';
@@ -11,6 +12,7 @@ import 'dart:developer' as dev;
 import 'package:keycloack_proj/views/snackBarView.dart';
 
 class ProfilePage extends StatefulWidget {
+  static bool fromDrawer = false;//for showing app bar
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
@@ -18,6 +20,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  //
+
+  // static bool getFromDrawer(){
+  //   return fromDrawer;
+  // }
+  // static void setFromDrawer(bool aux){
+  //   fromDrawer = aux;
+  // }
+
   String userToken = "";
   UserInfo? userInfo;
   bool isLoading =true;
@@ -120,11 +131,12 @@ class _ProfilePageState extends State<ProfilePage> {
     FlavorConfig flavorConfig =FlavorConfig.getInstance();
     return SafeArea(
         child: Scaffold(
-      /*appBar: AppBar(
+      appBar: ProfilePage.fromDrawer == true ?AppBar(
         title:  Text("Profil ${flavorConfig.variable}"),
         centerTitle: true,
-      ),*/
-      body: isLoading ? Center(child: CircularProgressIndicator()):SingleChildScrollView(
+        backgroundColor: Colors.greenAccent,
+      ):null,
+      body: isLoading ? Center(child: SpinKitCubeGrid(color: Colors.blue,size: Get.height *0.05,)):SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -138,9 +150,9 @@ class _ProfilePageState extends State<ProfilePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(
+                  const Expanded(
                     flex: 2,
-                    child: const CircleAvatar(
+                    child: CircleAvatar(
                       radius: 75.0,
                       backgroundImage: AssetImage(
                         "assets/mahdi.jpg",
@@ -205,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Material(
                 elevation: 20.0,
                 child: Container(
-                  height: Get.height * .9,
+                  height: Get.height * .6,
                   padding: const EdgeInsets.fromLTRB(5.0, 20.0, 0.0, 0.0),
                   color: Colors.grey[200],
                   child: ListView(scrollDirection: Axis.vertical,

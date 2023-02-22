@@ -25,7 +25,10 @@ class _HomePageState extends State<HomePage> {
 
   getBody() {
     if (currentIndex == 0)
-      return ProfilePage();
+      {
+        ProfilePage.fromDrawer =false;
+        return ProfilePage();
+      }
     else if (currentIndex ==1)
       return ActualityPage();
     else
@@ -56,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             leading: Icon(Icons.check),
           ),
           ListTile(
-            title: Text("cancel"),
+            title: Text("annuler"),
             onTap: () {
               Navigator.of(context).pop();
             },

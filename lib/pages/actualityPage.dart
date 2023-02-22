@@ -32,7 +32,7 @@ class _ActualityPageState extends State<ActualityPage> {
   List<double> percentWatchedList =[];
 
   startWatching(){
-    Timer.periodic(Duration(milliseconds: 50), (timer) {
+    Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
         // le percent doit etre entre 0 et 1 s'il est compris alors le time s'écoule et s'ajoute 0.05 au percent jusqu'à atteindre 1
         if(percentWatchedList[currentStoryIndex]+ 0.05 <=1){
@@ -110,12 +110,20 @@ class _ActualityPageState extends State<ActualityPage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 20.0),
+            padding:  EdgeInsets.only(top: Get.height *0.01),
             child: Row(
               children: [
+                ///Nous avons deux choix pour faire l'indicateur de progress : soit LinearProgressIndicator ou LinearPercentIndicator
+                ///
+                //exemple avec LinearProgressIndicator
+                /*Expanded(
+                  child: LinearProgressIndicator(
+                    value: percentWatchedList[0],
+                  ),
+                ),*/
                 Expanded(
                   child: LinearPercentIndicator(
-                    lineHeight: 15.0,
+                    lineHeight: 10.0,
                     percent: percentWatchedList[0],
                     progressColor: Colors.grey[500],
                     backgroundColor: Colors.grey[100],
@@ -124,7 +132,8 @@ class _ActualityPageState extends State<ActualityPage> {
                 ),
                 Expanded(
                   child: LinearPercentIndicator(
-                    lineHeight: 15.0,
+
+                    lineHeight: 10.0,
                     percent: percentWatchedList[1],
                     progressColor: Colors.grey[500],
                     backgroundColor: Colors.grey[100],
@@ -133,7 +142,7 @@ class _ActualityPageState extends State<ActualityPage> {
                 ),
                 Expanded(
                   child: LinearPercentIndicator(
-                    lineHeight: 15.0,
+                    lineHeight: 10.0,
                     percent: percentWatchedList[2],
                     progressColor: Colors.grey[500],
                     backgroundColor: Colors.grey[100],
