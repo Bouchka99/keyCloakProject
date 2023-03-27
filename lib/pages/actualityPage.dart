@@ -18,14 +18,17 @@ class _ActualityPageState extends State<ActualityPage> {
   List<Story> stories = [
     Story(name: "story 1",
         image:
-        "assets/bg1.jpg"),
+        "assets/kayra 1.png"),
 
     Story(
         name: "story 2",
-        image:"assets/bg2.jpg"),
+        image:"assets/kayra 2.png"),
     Story(
         name: "story 3",
-        image:"assets/bg3.jpg"),
+        image:"assets/kayra 3.png"),
+    Story(
+        name: "story 4",
+        image:"assets/kayra 4.png"),
   ];
   double percentWatched = 0;
 
@@ -33,16 +36,17 @@ class _ActualityPageState extends State<ActualityPage> {
   List<double> percentWatchedList =[];
 
   bool isPaused = false;
+  final double desiredStoryDuration = 15;
   startWatching(){
     //final timer = PausableTimer(Duration(seconds: 1), () => print('Fired!'));
-    Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    Timer.periodic(const Duration(milliseconds: 150), (timer) {
       setState(() {
         if(isPaused){
           timer.cancel();
         }
         // le percent doit etre entre 0 et 1 s'il est compris alors le time s'écoule et s'ajoute 0.05 au percent jusqu'à atteindre 1
-        if(percentWatchedList[currentStoryIndex]+ 0.05 <=1){
-          percentWatchedList[currentStoryIndex] +=0.05;
+        if(percentWatchedList[currentStoryIndex]+ 0.01 <=1){
+          percentWatchedList[currentStoryIndex] +=0.01;
         }
         else {
           // si on arrive à 1 on met le percent à 1 et on passe au next story
@@ -90,7 +94,6 @@ class _ActualityPageState extends State<ActualityPage> {
           currentStoryIndex -=1;
         });
       }
-
     }
     //user taped on right (3/4 of screen) sauf la dernière
     else if(toutchTap > 3/4 * Get.width){
@@ -116,12 +119,13 @@ class _ActualityPageState extends State<ActualityPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+
       onLongPress: () {
-        print("on long press");
+        debugPrint("on long press");
         _pauseTimer();
       },
       onLongPressEnd: (_) {
-        print("resume");
+        debugPrint("resume");
         _resumeTimer();
       },
       onTapDown:(details)=> tapOnStory(details),
@@ -137,7 +141,7 @@ class _ActualityPageState extends State<ActualityPage> {
             ),
           ),
           Container(
-            padding:  EdgeInsets.only(top: Get.height *0.01),
+            padding:  const EdgeInsets.only(top: 50.0, left: 12.0, right: 12.0),
             child: Row(
               children: [
                 ///Nous avons deux choix pour faire l'indicateur de progress : soit LinearProgressIndicator ou LinearPercentIndicator
@@ -150,30 +154,39 @@ class _ActualityPageState extends State<ActualityPage> {
                 ),*/
                 Expanded(
                   child: LinearPercentIndicator(
-                    lineHeight: 10.0,
+                    lineHeight: 2.0,
                     percent: percentWatchedList[0],
-                    progressColor: Colors.grey[500],
-                    backgroundColor: Colors.grey[100],
-                    barRadius: Radius.circular(Get.height *.05),
+                    progressColor: Colors.white,
+                    backgroundColor: Colors.white.withOpacity(0.5),
+                    barRadius: const Radius.circular(2.0),
                   ),
                 ),
                 Expanded(
                   child: LinearPercentIndicator(
 
-                    lineHeight: 10.0,
+                    lineHeight: 2.0,
                     percent: percentWatchedList[1],
-                    progressColor: Colors.grey[500],
-                    backgroundColor: Colors.grey[100],
-                    barRadius: Radius.circular(Get.height *.05),
+                    progressColor: Colors.white,
+                    backgroundColor: Colors.white.withOpacity(0.5),
+                    barRadius: const Radius.circular(2.0),
                   ),
                 ),
                 Expanded(
                   child: LinearPercentIndicator(
-                    lineHeight: 10.0,
+                    lineHeight: 2.0,
                     percent: percentWatchedList[2],
-                    progressColor: Colors.grey[500],
-                    backgroundColor: Colors.grey[100],
-                    barRadius: Radius.circular(Get.height *.05),
+                    progressColor: Colors.white,
+                    backgroundColor: Colors.white.withOpacity(0.5),
+                    barRadius: const Radius.circular(2.0),
+                  ),
+                ),
+                Expanded(
+                  child: LinearPercentIndicator(
+                    lineHeight: 2.0,
+                    percent: percentWatchedList[3],
+                    progressColor: Colors.white,
+                    backgroundColor: Colors.white.withOpacity(0.5),
+                    barRadius: const Radius.circular(2.0),
                   ),
                 ),
 

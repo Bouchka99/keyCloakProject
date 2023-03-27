@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
     try {
       dio.options.headers = {"Authorization": "Bearer $userToken"};
       Response response = await dio.get(
-        "http://10.0.2.2:8080/realms/demo/protocol/openid-connect/userinfo",
+        "http://192.168.1.13:8080/realms/demo/protocol/openid-connect/userinfo",
       );
       if (response.statusCode == 200) {
         setState(() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:keycloack_proj/flavor_config.dart';
+import 'package:keycloack_proj/pages/actualityPage.dart';
 import 'package:keycloack_proj/pages/loginPage.dart';
 import 'package:keycloack_proj/pages/splashPage.dart';
 
@@ -40,6 +41,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return ActualityPage();
   }
 }

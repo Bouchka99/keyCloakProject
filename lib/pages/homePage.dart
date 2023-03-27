@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:keycloack_proj/flavor_config.dart';
 import 'package:keycloack_proj/pages/actualityPage.dart';
 import 'package:keycloack_proj/pages/drawer.dart';
@@ -13,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //testMap is just a try for taking
+  Map testMap = {};
   int currentIndex = 0;
 
   FlavorConfig flavorConfig = FlavorConfig.getInstance();
@@ -71,6 +74,12 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+    //get Data passing from LoginPage
+    //using ModalRoute
+    //testMap =ModalRoute.of(context)!.settings.arguments as Map;
+    //using Get
+    testMap = Get.arguments;
+    print(testMap);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,

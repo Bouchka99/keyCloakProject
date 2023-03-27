@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
       try {
         dio.options.contentType = Headers.formUrlEncodedContentType;
         Response response = await dio.post(
-            "http://10.0.2.2:8080/realms/demo/protocol/openid-connect/token",
+            "http://192.168.1.13:8080/realms/demo/protocol/openid-connect/token",
             data: {
               "username": _email,
               "password": _password,
@@ -120,10 +120,11 @@ class _LoginPageState extends State<LoginPage> {
           await SecureStorageService.setToken(SecureStorageService.userToken);
           dev.log("*********************** ${SecureStorageService.userToken}");
 
-          /// init the form
-          // _email ="";
-          // _password ="";
-          Get.off(() => HomePage());
+          //Using arguments just to try passing data from LoginPage to HomePage, the arguments are stocked in testMap keep a look on HomePage
+          Get.off(() => HomePage(),arguments: {
+            "name" : "testName",
+            "age" : 15
+          });
           //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
         }
       } on DioError catch (e) {
@@ -292,3 +293,26 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+class Person extends StatelessWidget {
+  const Person({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+class testClass extends StatefulWidget {
+  const testClass({Key? key}) : super(key: key);
+
+  @override
+  State<testClass> createState() => _testClassState();
+}
+
+class _testClassState extends State<testClass> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
