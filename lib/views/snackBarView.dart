@@ -7,7 +7,7 @@ class SnackBarView{
     Get.snackbar(
         title,
         message,
-        duration: const Duration(seconds: 2),
+        //duration: const Duration(seconds: 2),
         maxWidth: Get.width * .6,
         snackStyle: SnackStyle.FLOATING,
         backgroundColor: color,

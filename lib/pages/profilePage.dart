@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
       }
     } on DioError catch (e) {
       switch (e.type) {
-        case DioErrorType.connectTimeout:
+        case DioExceptionType.connectionTimeout:
           //showSnackBar("Dépassement du délais de connexion (connection time out)");
           SnackBarView().showSnackBarUsingGetX(
               title: "Erreur",
@@ -81,15 +81,16 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.red,
               icon: Icons.error);
           break;
-        case DioErrorType.sendTimeout:
+        case DioExceptionType.sendTimeout:
           //showSnackBar("Dépassement du délais d'envoi (send time out)");
           SnackBarView().showSnackBarUsingGetX(
+
               title: "Erreur",
               message: "Dépassement du délais d'envoi (send time out)",
               color: Colors.red,
               icon: Icons.error);
           break;
-        case DioErrorType.response:
+        case DioExceptionType.badResponse:
           //showSnackBar("Erreur dans la réponse qui est invalide (status  différent de 200)");
           SnackBarView().showSnackBarUsingGetX(
               title: "Erreur",
