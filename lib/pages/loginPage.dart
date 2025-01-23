@@ -127,21 +127,21 @@ class _LoginPageState extends State<LoginPage> {
           });
           //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
         }
-      } on DioError catch (e) {
+      } on DioException catch (e) {
         switch(e.type){
-          case DioErrorType.connectTimeout :
+          case DioExceptionType.connectionTimeout :
             //showSnackBar("Dépassement du délais de connexion (connection time out)");
             SnackBarView().showSnackBarUsingGetX(title: "Erreur", message: "Dépassement du délais de connexion (connection time out)", color: Colors.red, icon: Icons.error);
             break;
-          case DioErrorType.receiveTimeout :
+          case DioExceptionType.receiveTimeout :
             //showSnackBar("Dépassement du délais de réponse (receive time out)");
             SnackBarView().showSnackBarUsingGetX(title: "Erreur", message: "Dépassement du délais de réponse (receive time out)", color: Colors.red, icon: Icons.error);
             break;
-          case DioErrorType.sendTimeout : 
+          case DioExceptionType.sendTimeout :
             //showSnackBar("Dépassement du délais d'envoi (send time out)");
             SnackBarView().showSnackBarUsingGetX(title: "Erreur", message: "Dépassement du délais d'envoi (send time out)", color: Colors.red, icon: Icons.error);
             break;
-          case DioErrorType.response :
+          case DioExceptionType.badResponse :
             //showSnackBar("Erreur dans la réponse qui est invalide (status  différent de 200)");
             SnackBarView().showSnackBarUsingGetX(title: "Erreur", message: "Erreur dans la réponse qui est invalide (status  différent de 200)", color: Colors.red, icon: Icons.error);
             break;
